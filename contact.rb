@@ -116,11 +116,11 @@ class Contact
 
 end
 
-contact = Contact.create("Mark", "Conlon")
-contact.email = "fake@gmail.com"
-contact1 = Contact.create("Peter", "Parker", "N/A", "Spiderman")
-puts Contact.all
-puts Contact.find(2)
-puts contact.update("email", "markjconlon@gmail.com")
-puts Contact.find_by("first_name", "Mark")
-puts Contact.find_by("note", "Spiderman")
+# contact = Contact.create("Mark", "Conlon")
+# contact.email = "fake@gmail.com"
+# contact1 = Contact.create("Peter", "Parker", "N/A", "Spiderman")
+# puts Contact.all
+# puts Contact.find(2)
+# puts contact.update("email", "markjconlon@gmail.com")
+# puts Contact.find_by("first_name", "Mark")
+# puts Contact.find_by("note", "Spiderman")
