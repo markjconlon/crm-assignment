@@ -36,7 +36,21 @@ class CRM
   end
 
   def add_new_contact
+    puts "Enter the first name: "
+    first_name = gets.chomp
 
+    puts "Enter the last name: "
+    last_name = gets.chomp
+
+    puts "Enter an email (you can leave blank): "
+    email = gets.chomp
+
+    puts "Enter a note (can be blank): "
+    note = gets.chomp
+
+    contact = Contact.create(first_name, last_name, email, note)
+
+    puts "#{contact.first_name} was added successfully"
   end
 
   def modify_existing_contact
