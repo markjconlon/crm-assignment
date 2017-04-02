@@ -43,15 +43,23 @@ class Contact
   # 1. which of the contact's attributes you want to update
   # 2. the new value for that attribute
   # and then make the appropriate change to the contact
-  def update
-
+  def update(attribute, value)
+    if attribute.to_s.downcase.start_with?("fir")
+      @first_name = value.to_s
+    elsif attribute.to_s.downcase.start_with?("las")
+      @last_name = value.to_s
+    elsif attribute.to_s.downcase.start_with?("ema")
+      @email = value.to_s
+    elsif attribute.to_s.downcase.start_with?("not")
+      @note = value.to_s
+    end
   end
 
   # This method should work similarly to the find method above
   # but it should allow you to search for a contact using attributes other than id
   # by specifying both the name of the attribute and the value
   # eg. searching for 'first_name', 'Betty' should return the first contact named Betty
-  def self.find_by
+  def self.find_by(attribute, value)
 
   end
 
@@ -78,3 +86,5 @@ contact = Contact.create("Mark", "Conlon")
 contact.email = "fake@gmail.com"
 contact1 = Contact.create("Peter", "Parker", "N/A", "Spiderman")
 puts Contact.all
+puts Contact.find(2)
+puts contact.update("email", "markjconlon@gmail.com")
