@@ -3,8 +3,8 @@ class Contact
   attr_accessor :first_name, :last_name, :email, :note
   attr_reader :id
 
-  @@contacts = []
-  @@id       = 1
+  @@contacts  = []
+  @@unique_id = 1
 
   # This method should initialize the contact's attributes
   def initialize(first_name, last_name, email = "N/A", note = "N/A")
@@ -12,8 +12,8 @@ class Contact
     @last_name  = last_name
     @email      = email
     @note       = note
-    @id         = @@id
-    @@id +=1
+    @id         = @@unique_id
+    @@unique_id +=1
   end
 
   # This method should call the initializer,
@@ -26,7 +26,9 @@ class Contact
 
   # This method should return all of the existing contacts
   def self.all
-
+    @@contacts.each do |contact|
+      puts "#{contact.first_name} #{contact.last_name} , #{contact.email} \n Note: #{contact.note}"
+    end
   end
 
   # This method should accept an id as an argument
@@ -70,4 +72,7 @@ class Contact
 
 end
 
-contact = Contact.new("Mark", "Conlon")
+contact = Contact.create("Mark", "Conlon")
+contact.email = "fake@gmail.com"
+contact1 = Contact.create("Peter", "Parker", "N/A", "Spiderman")
+Contact.all
