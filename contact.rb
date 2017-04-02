@@ -26,15 +26,17 @@ class Contact
 
   # This method should return all of the existing contacts
   def self.all
-    @@contacts.each do |contact|
-      puts "#{contact.first_name} #{contact.last_name} , #{contact.email} \n Note: #{contact.note}"
-    end
+    @@contacts
   end
 
   # This method should accept an id as an argument
   # and return the contact who has that id
-  def self.find
-
+  def self.find(id)
+    @@contacts.each do |contact|
+      if contact.id == id
+        return contact
+      end
+    end
   end
 
   # This method should allow you to specify
@@ -75,4 +77,4 @@ end
 contact = Contact.create("Mark", "Conlon")
 contact.email = "fake@gmail.com"
 contact1 = Contact.create("Peter", "Parker", "N/A", "Spiderman")
-Contact.all
+puts Contact.all
