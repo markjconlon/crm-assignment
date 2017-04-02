@@ -60,7 +60,36 @@ class Contact
   # by specifying both the name of the attribute and the value
   # eg. searching for 'first_name', 'Betty' should return the first contact named Betty
   def self.find_by(attribute, value)
-
+    if attribute.downcase == "first_name" || "last_name" || "email" || "note"
+      case attribute.downcase
+      when "first_name"
+        @@contacts.each do |contact|
+          if contact.first_name.downcase == value.downcase
+            return contact
+          end
+        end
+      when "last_name"
+        @@contacts.each do |contact|
+          if contact.last_name.downcase == value.downcase
+            return contact
+          end
+        end
+      when "email"
+        @@contacts.each do |contact|
+          if contact.email.downcase == value.downcase
+            return contact
+          end
+        end
+      when "note"
+        @@contacts.each do |contact|
+          if contact.first_name.downcase == value.downcase
+            return contact
+          end
+        end
+      end
+    else
+      return "ERROR: Invalid attribute please use [first_name] [last_name] [email] [note] only"
+    end
   end
 
   # This method should delete all of the contacts
@@ -88,3 +117,5 @@ contact1 = Contact.create("Peter", "Parker", "N/A", "Spiderman")
 puts Contact.all
 puts Contact.find(2)
 puts contact.update("email", "markjconlon@gmail.com")
+puts Contact.find_by("first_name", "Mark")
+puts Contact.find_by("note", "Spiderman")
