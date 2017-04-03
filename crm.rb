@@ -21,6 +21,7 @@ class CRM
     puts '[4] Display all the contacts'
     puts '[5] Search by attribute'
     puts '[6] Exit'
+    puts 'The unique id is shown in option 4'
     puts 'Enter a number: '
   end
 
@@ -98,7 +99,11 @@ class CRM
   end
 
   def display_all_contacts
-
+    contacts = Contact.all
+    contacts.each do |contact|
+      puts "Unique id number: #{contact.id}"
+      puts "#{contact.full_name} #{contact.email} #{contact.note}"
+    end
   end
 
   def search_by_attribute
