@@ -54,7 +54,15 @@ class CRM
   end
 
   def modify_existing_contact
-
+    puts "Choose on of the following options"
+    puts "Enter [first_name] for First Name"
+    puts "Enter [last_name] for Last Name"
+    puts "Enter [email] for Email"
+    puts "Enter [note] for Note"
+    option = gets.chomp
+    puts "Enter the approiate value: "
+    value = gets.chomp
+    Contact.find_by(option, value)
   end
 
   def delete_contact
