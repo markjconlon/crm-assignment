@@ -54,6 +54,7 @@ class CRM
     puts "#{contact.first_name} was added successfully"
   end
 
+#still some bugs ever first_name gets changed atm
   def modify_existing_contact
     puts "To ensure you have the correct person please enter the unique id:"
     id = gets.chomp.to_i
@@ -62,7 +63,7 @@ class CRM
     puts "Is this the corrrect contact? [y] [n]:"
     answer = gets.chomp.downcase
     if answer == "y"
-      puts "Choose on of the following options"
+      puts "Choose one of the following options"
       puts "Enter [first_name] for First Name"
       puts "Enter [last_name] for Last Name"
       puts "Enter [email] for Email"
@@ -107,7 +108,17 @@ class CRM
   end
 
   def search_by_attribute
-
+    puts "Choose one of the following options"
+    puts "Enter [first_name] for First Name"
+    puts "Enter [last_name] for Last Name"
+    puts "Enter [email] for Email"
+    puts "Enter [note] for Note"
+    option = gets.chomp
+    puts "Enter the appropriate #{option} "
+    value = gets.chomp
+    contact = Contact.find_by(option, value)
+    puts "Unique id number: #{contact.id}"
+    puts "#{contact.full_name} #{contact.email} #{contact.note}"
   end
 
 
