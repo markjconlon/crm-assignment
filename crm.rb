@@ -54,19 +54,47 @@ class CRM
   end
 
   def modify_existing_contact
-    puts "Choose on of the following options"
-    puts "Enter [first_name] for First Name"
-    puts "Enter [last_name] for Last Name"
-    puts "Enter [email] for Email"
-    puts "Enter [note] for Note"
-    option = gets.chomp
-    puts "Enter the approiate value: "
-    value = gets.chomp
-    Contact.find_by(option, value)
+    puts "To ensure you have the correct person please enter the unique id:"
+    id = gets.chomp.to_i
+    contact = Contact.find(id)
+    puts "#{contact.full_name}"
+    puts "Is this the corrrect contact? [y] [n]:"
+    answer = gets.chomp.downcase
+    if answer == "y"
+      puts "Choose on of the following options"
+      puts "Enter [first_name] for First Name"
+      puts "Enter [last_name] for Last Name"
+      puts "Enter [email] for Email"
+      puts "Enter [note] for Note"
+      option = gets.chomp
+      puts "Enter the approiate value: "
+      value = gets.chomp
+      contact = Contact.find_by(option, value)
+      contact.each do |attribute|
+        attribute.update(option, value)
+      end
+    elsif answer == "n"
+      modify_existing_contact
+    else
+      puts "You entered an invalid selection please try again"
+    end
   end
 
+  #works unless the id number does not exist then it crashes
   def delete_contact
-
+    puts "Deleting requires the unique id. Please enter the id: "
+    id = gets.chomp.to_i
+    contact = Contact.find(id)
+    puts "#{contact.full_name}"
+    puts "Is this the corrrect contact? [y] [n]:"
+    answer = gets.chomp.downcase
+    if answer == "y"
+      contact.delete
+    elsif answer == "n"
+      delete_contact
+    else
+      puts "You entered an invalid selection please try again"
+    end
   end
 
   def display_all_contacts
